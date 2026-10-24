@@ -1,0 +1,9 @@
+# Internal / raw material: kept local, not for the public repo
+Initial Assets/
+docs/
+screenshots/
+
+# Python
+__pycache__/
+*.pyc
+.venv/

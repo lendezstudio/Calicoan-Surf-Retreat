@@ -1,0 +1,107 @@
+{
+  "_readme": "Single source for business facts and media captions. status: 'concept' = shown on the concept site, confirm before launch; 'hidden' = never rendered until changed to 'approved'; 'approved' = confirmed by the owner. See docs/content-verification.md.",
+
+  "business": {
+    "name": "Calicoan Surf Retreat",
+    "locality": "Guiuan",
+    "region": "Eastern Samar",
+    "country": "Philippines",
+    "countryCode": "PH",
+    "island": "Calicoan Island",
+    "locationLabel": "ABCD Beach area, Barangay Sulangan, Guiuan, Eastern Samar, Philippines",
+    "shortLocation": "Calicoan Island, Guiuan, Eastern Samar, Philippines",
+    "streetAddress": { "value": "ABCD Beach, Lot 6277 Provincial Highway, Barangay Sulangan", "postalCode": "6809", "status": "hidden" }
+  },
+
+  "contact": {
+    "phone": { "e164": "+639154036544", "display": "+63 915 403 6544", "status": "concept" },
+    "facebook": { "url": "https://www.facebook.com/islacalisurfretreat", "status": "concept" },
+    "maps": { "url": "https://www.google.com/maps/search/?api=1&query=Calicoan+Surf+Retreat+Guiuan+Eastern+Samar", "status": "concept" },
+    "email": { "value": "", "status": "hidden" },
+    "whatsapp": { "value": "", "status": "hidden" },
+    "instagram": { "url": "", "status": "hidden" },
+    "tiktok": { "url": "", "status": "hidden" }
+  },
+
+  "stays": [
+    {
+      "id": "kubo",
+      "name": "Native Bahay Kubo",
+      "short": "Native-style character for your Calicoan getaway. A simple place to settle in between beach days and island exploring.",
+      "detail": "Prefer a stay with a local feel? Take a closer look at the Bahay Kubo and ask about its current layout and inclusions.",
+      "cta": "Ask About the Kubo",
+      "lead": "kubo-sala",
+      "photos": ["kubo-sala", "kubo-exterior"],
+      "chips": { "items": ["Up to 3 guests", "Air-conditioning"], "status": "hidden" }
+    },
+    {
+      "id": "family",
+      "name": "Container Family Room",
+      "short": "A distinctive stay to consider for a trip together. Explore the room, then check the sleeping arrangements and inclusions for your group.",
+      "detail": "Planning a family visit or a stay with friends? Ask whether the Container Family Room is the right match for your dates and party.",
+      "cta": "Ask About This Room",
+      "lead": "family-bed",
+      "photos": ["family-bed", "family-bunks", "family-exterior"],
+      "chips": { "items": ["Up to 5 guests", "1 bedroom", "Private bathroom"], "status": "hidden" }
+    },
+    {
+      "id": "loft",
+      "name": "Loft House",
+      "short": "Bringing more people along? Take a look at the Loft House and ask how it can accommodate your trip.",
+      "detail": "For a shared Calicoan getaway, start with the details that matter: who’s coming, when you’ll arrive, and the space you need.",
+      "cta": "Ask About the Loft",
+      "lead": "loft-lounge",
+      "photos": ["loft-lounge", "loft-bed", "loft-kitchen", "loft-billiards", "loft-exterior"],
+      "chips": { "items": ["Up to 7 guests"], "status": "hidden" }
+    }
+  ],
+
+  "media": {
+    "kubo-sala":       { "alt": "Open bamboo sala with a woven bamboo table and bench under a thatched roof", "caption": "Native Bahay Kubo · the sala", "group": "stays" },
+    "kubo-exterior":   { "alt": "Wooden kubo with a thatched roof, raised on posts among trees", "caption": "Native Bahay Kubo · outside", "group": "stays" },
+    "family-bed":      { "alt": "Queen bed with blue linen and folded towels inside the container room", "caption": "Container Family Room · queen bed", "group": "stays" },
+    "family-bunks":    { "alt": "Wooden bunk bed with patterned covers inside the container room", "caption": "Container Family Room · bunk beds", "group": "stays" },
+    "family-exterior": { "alt": "Dark blue container room with white-framed windows on a grassy lot", "caption": "Container Family Room · outside", "group": "stays" },
+    "loft-lounge":     { "alt": "Armchairs and a sofa beside a billiard table in the Loft House living area", "caption": "Loft House · living area", "group": "stays" },
+    "loft-bed":        { "alt": "Bed in the loft under a woven thatched ceiling", "caption": "Loft House · loft bedroom", "group": "stays" },
+    "loft-kitchen":    { "alt": "Kitchen counter with a gas hob and wooden cabinets", "caption": "Loft House · kitchen", "group": "stays" },
+    "loft-billiards":  { "alt": "Billiard table with racked balls inside the Loft House", "caption": "Loft House · billiard table", "group": "stays" },
+    "loft-exterior":   { "alt": "Single-storey house with a thatched roof and wide windows, seen from the yard", "caption": "Loft House · outside", "group": "stays" },
+    "garden-bath":     { "alt": "Open-air garden bathroom with stone walls, a plant bed and a shower", "caption": "Open-air garden bathroom", "group": "retreat" },
+    "aerial-property": { "alt": "Aerial view of the thatched Loft House and the container room among palm trees", "caption": "The retreat from above", "group": "retreat" },
+    "guests-kubo":     { "alt": "Three guests smiling outside a bamboo kubo next to a surfboard", "caption": "Guests at the retreat", "group": "retreat" },
+    "aerial-coast":    { "alt": "Aerial view of the retreat among coconut palms with the reef coastline beyond", "caption": "Between the palms and the coast", "group": "calicoan" },
+    "road":            { "alt": "Aerial view of the coastal highway lined with greenery", "caption": "The highway near the retreat", "group": "calicoan" },
+    "surf-21":         { "alt": "Surfer riding along the face of a blue wave", "caption": "Surf photo shared by the retreat", "group": "calicoan" },
+    "surf-13":         { "alt": "Surfer with arms raised turning on a breaking wave", "caption": "Surf photo shared by the retreat", "group": "calicoan" },
+    "surf-18":         { "alt": "Surfer riding inside the curl of a turquoise wave", "caption": "Surf photo shared by the retreat", "group": "calicoan" },
+    "surf-20":         { "alt": "Two surfers sharing a small breaking wave", "caption": "Surf photo shared by the retreat", "group": "calicoan" },
+    "surf-15":         { "alt": "Surfer paddling out toward breaking whitewater", "caption": "Surf photo shared by the retreat", "group": "calicoan" },
+    "surf-19":         { "alt": "Surfer in a yellow top riding down a long wave", "caption": "Surf photo shared by the retreat", "group": "calicoan" }
+  },
+
+  "gallery": ["kubo-sala", "loft-lounge", "family-bed", "aerial-property", "garden-bath", "surf-21", "kubo-exterior", "loft-bed", "family-bunks", "aerial-coast", "surf-18", "loft-kitchen", "guests-kubo", "family-exterior", "surf-13", "loft-billiards", "road", "surf-20", "loft-exterior", "surf-15", "surf-19"],
+
+  "strip": [
+    { "id": "strip-sala", "alt": "Bamboo kubo sala" },
+    { "id": "strip-lounge", "alt": "Loft House living area" },
+    { "id": "strip-surf", "alt": "Surfer on a blue wave" },
+    { "id": "strip-family", "alt": "Container Family Room from outside" },
+    { "id": "strip-bath", "alt": "Open-air garden bathroom" },
+    { "id": "strip-aerial", "alt": "The retreat among palms from above" }
+  ],
+
+  "videos": [
+    { "id": "tour", "poster": "poster-tour", "title": "Around the retreat", "caption": "A short look around the stays, filmed for the retreat’s page." , "label": "Video tour of the retreat" },
+    { "id": "surf", "poster": "poster-surf", "title": "Surf days", "caption": "Drone surf footage shared on the retreat’s page.", "label": "Drone footage of surfers on reef waves" }
+  ],
+
+  "credit": { "studio": "Lendez Studio", "url": "https://lendezstudio.com/" },
+
+  "seo": {
+    "title": "Calicoan Surf Retreat | Stay Near ABCD Beach, Guiuan",
+    "description": "Plan a stay at Calicoan Surf Retreat in Guiuan, Eastern Samar. Explore accommodation options near ABCD Beach and ask about your dates.",
+    "shareTitle": "Calicoan Surf Retreat",
+    "shareDescription": "Your Calicoan stay for surf days, coastal exploring and time together."
+  }
+}

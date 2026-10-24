@@ -1,0 +1,427 @@
+{%- macro picture(id, sizes, alt="", cls="", loading="lazy", priority=false) -%}
+{%- set m = media[id] -%}
+<picture>
+  <source type="image/avif" srcset="{% for w in m.widths %}media/{{ id }}-{{ w }}.avif {{ w }}w{{ ", " if not loop.last }}{% endfor %}" sizes="{{ sizes }}">
+  <img src="media/{{ id }}-{{ m.widths[-1] }}.jpg" srcset="{% for w in m.widths %}media/{{ id }}-{{ w }}.jpg {{ w }}w{{ ", " if not loop.last }}{% endfor %}" sizes="{{ sizes }}" width="{{ m.width }}" height="{{ m.height }}" alt="{{ alt }}"{% if cls %} class="{{ cls }}"{% endif %} {% if priority %}fetchpriority="high" loading="eager"{% else %}loading="{{ loading }}"{% endif %} decoding="async">
+</picture>
+{%- endmacro -%}
+{%- macro arrow() -%}<svg class="icon-arrow" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10h11m-4-4.5L15.5 10 11 14.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>{%- endmacro -%}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{ seo.title }}</title>
+  <meta name="description" content="{{ seo.description }}">
+  {%- if env.noindex %}
+  <meta name="robots" content="noindex, nofollow">
+  {%- endif %}
+  {%- if env.site_url %}
+  <link rel="canonical" href="{{ env.site_url }}">
+  {%- endif %}
+  <meta name="theme-color" content="#f7f3ea">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ business.name }}">
+  <meta property="og:title" content="{{ seo.shareTitle }}">
+  <meta property="og:description" content="{{ seo.shareDescription }}">
+  <meta property="og:image" content="{{ env.site_url or '' }}media/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bamboo kubo sala beside the Calicoan Surf Retreat logo">
+  {%- if env.site_url %}
+  <meta property="og:url" content="{{ env.site_url }}">
+  {%- endif %}
+  <meta property="og:locale" content="en_PH">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ seo.shareTitle }}">
+  <meta name="twitter:description" content="{{ seo.shareDescription }}">
+  <link rel="icon" href="favicon/favicon.ico" sizes="any">
+  <link rel="icon" href="favicon/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preload" href="fonts/eb-garamond-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" type="image/avif" imagesrcset="{% for w in media['hero'].widths %}media/hero-{{ w }}.avif {{ w }}w{{ ", " if not loop.last }}{% endfor %}" imagesizes="100vw" media="(min-width: 700px)">
+  <link rel="preload" as="image" type="image/avif" imagesrcset="{% for w in media['hero-portrait'].widths %}media/hero-portrait-{{ w }}.avif {{ w }}w{{ ", " if not loop.last }}{% endfor %}" imagesizes="100vw" media="(max-width: 699.98px)">
+  <link rel="stylesheet" href="styles.css?v={{ version }}">
+  <script type="application/ld+json">{{ structured_data | tojson }}</script>
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <div class="site-header__inner">
+      <a class="brand" href="#top" aria-label="{{ business.name }}, back to top">
+        <picture>
+          <source type="image/webp" srcset="media/logo-lockup-64.webp 1x, media/logo-lockup-128.webp 2x">
+          <img src="media/logo-lockup-64.png" srcset="media/logo-lockup-64.png 1x, media/logo-lockup-128.png 2x" width="{{ (media['logo-lockup'].width * 64 / media['logo-lockup'].height) | round | int }}" height="64" alt="{{ business.name }}">
+        </picture>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a href="#stays">Stays</a></li>
+          <li><a href="#calicoan">Calicoan</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#plan">Plan Your Visit</a></li>
+        </ul>
+      </nav>
+      <a class="button button--small site-header__cta" href="#inquiry">Ask About Your Dates</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-open>
+        <span class="menu-toggle__bars" aria-hidden="true"></span>
+        <span class="menu-toggle__label">Menu</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden data-menu>
+    <div class="mobile-menu__top">
+      <span class="eyebrow">Menu</span>
+      <button class="mobile-menu__close" type="button" data-menu-close>Close<span class="visually-hidden"> menu</span></button>
+    </div>
+    <nav aria-label="Mobile">
+      <ul class="mobile-menu__list">
+        <li><a href="#stays">Stays</a></li>
+        <li><a href="#calicoan">Calicoan</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#plan">Plan Your Visit</a></li>
+        <li><a href="#faq">Questions</a></li>
+      </ul>
+    </nav>
+    <a class="button" href="#inquiry">Ask About Your Dates</a>
+    <p class="mobile-menu__contact">{{ business.shortLocation }}{% if contact.phone.status != "hidden" %}<br><a href="tel:{{ contact.phone.e164 }}">{{ contact.phone.display }}</a>{% endif %}</p>
+  </div>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero__media">
+        <picture>
+          <source media="(max-width: 699.98px)" type="image/avif" srcset="{% for w in media['hero-portrait'].widths %}media/hero-portrait-{{ w }}.avif {{ w }}w{{ ", " if not loop.last }}{% endfor %}" sizes="100vw">
+          <source media="(max-width: 699.98px)" srcset="{% for w in media['hero-portrait'].widths %}media/hero-portrait-{{ w }}.jpg {{ w }}w{{ ", " if not loop.last }}{% endfor %}" sizes="100vw">
+          <source type="image/avif" srcset="{% for w in media['hero'].widths %}media/hero-{{ w }}.avif {{ w }}w{{ ", " if not loop.last }}{% endfor %}" sizes="100vw">
+          <img src="media/hero-1600.jpg" srcset="{% for w in media['hero'].widths %}media/hero-{{ w }}.jpg {{ w }}w{{ ", " if not loop.last }}{% endfor %}" sizes="100vw" width="{{ media['hero'].width }}" height="{{ media['hero'].height }}" alt="A surfer on a longboard riding a blue reef wave" fetchpriority="high" loading="eager" decoding="async">
+        </picture>
+      </div>
+      <div class="hero__content">
+        <p class="eyebrow eyebrow--light">Calicoan Island · Guiuan, Eastern Samar</p>
+        <h1 class="hero__title" id="hero-title">Surf days. <em>Time off.</em><br class="hero__break"> Your Calicoan stay.</h1>
+        <p class="hero__lede">Find your base near ABCD Beach. Come for the local surf scene, a few days by the coast, or a trip with your favorite people.</p>
+        <div class="hero__actions">
+          <a class="button button--light" href="#inquiry">Ask About Your Dates</a>
+          <a class="button button--ghost-light" href="#stays">See the Stays</a>
+        </div>
+      </div>
+      <p class="hero__foot">{{ business.name }} · Eastern Samar, Philippines</p>
+    </section>
+
+    <section class="statement" id="intro" aria-labelledby="intro-title">
+      <p class="eyebrow">A different side of your next trip</p>
+      <h2 class="statement__title" id="intro-title">Make room for <em>Calicoan.</em></h2>
+      <p class="statement__body">A surf session on the itinerary. Time to explore the coast. A place to return to when the day is done. Calicoan Surf Retreat brings your stay and the island’s surf setting into one simple plan.</p>
+      <a class="text-link" href="#stays">Find your stay {{ arrow() }}</a>
+    </section>
+
+    <ul class="strip" aria-label="A first look at the retreat">
+      {%- for s in strip %}
+      <li class="strip__item">{{ picture(s.id, "(min-width: 900px) 17vw, 34vw", s.alt) }}</li>
+      {%- endfor %}
+    </ul>
+
+    <section class="stays section" id="stays" aria-labelledby="stays-title">
+      <header class="section-head">
+        <p class="eyebrow">Find your stay</p>
+        <h2 class="section-title" id="stays-title">A stay that fits <em>your kind of trip.</em></h2>
+        <p class="section-lede">Traveling as a couple, with friends, or with the family? Explore the accommodation options, then ask about the right fit for your dates and group.</p>
+      </header>
+
+      <ol class="stays__list">
+        {%- for stay in stays %}
+        <li class="stay" id="stay-{{ stay.id }}">
+          <button class="stay__media" type="button" data-lightbox-set="{{ stay.id }}" aria-label="View {{ stay.photos | length }} photos of the {{ stay.name }}">
+            {{ picture(stay.lead, "(min-width: 1100px) 340px, (min-width: 760px) 30vw, 92vw", media_text[stay.lead].alt) }}
+            <span class="stay__count" aria-hidden="true">{{ stay.photos | length }} photos</span>
+          </button>
+          <div class="stay__body">
+            <p class="stay__index" aria-hidden="true">0{{ loop.index }}</p>
+            <h3 class="stay__name">{{ stay.name }}</h3>
+            <p class="stay__short">{{ stay.short }}</p>
+            <p class="stay__detail">{{ stay.detail }}</p>
+            {%- if stay.chips.status == "approved" %}
+            <ul class="stay__chips" aria-label="Details">
+              {%- for chip in stay.chips.items %}<li>{{ chip }}</li>{% endfor %}
+            </ul>
+            {%- endif %}
+            <a class="text-link" href="#inquiry" data-stay="{{ stay.id }}">{{ stay.cta }} {{ arrow() }}</a>
+          </div>
+        </li>
+        {%- endfor %}
+      </ol>
+
+      <div class="stays__help">
+        <p>Send your dates and guest count for current options, rates and inclusions.</p>
+        <a class="button" href="#inquiry" data-stay="">Help Me Choose</a>
+      </div>
+    </section>
+
+    <section class="island" id="calicoan" aria-labelledby="island-title">
+      <header class="section-head section">
+        <p class="eyebrow">The island around you</p>
+        <h2 class="section-title" id="island-title">Come for the surf. <em>Make time for the coast.</em></h2>
+        <p class="section-lede">Calicoan’s surf scene is part of the draw. There’s also room in the trip for beach time, exploring and doing a little less.</p>
+      </header>
+
+      <article class="island__surf" aria-labelledby="surf-title">
+        <div class="island__surf-media">{{ picture("surf-21", "100vw", "Surfer riding along the face of a blue wave") }}</div>
+        <div class="island__surf-copy">
+          <h3 id="surf-title">Surf at ABCD Beach</h3>
+          <p>Discover the local surf scene near ABCD Beach. If you’re planning a session, check current conditions and arrange suitable instruction with a local operator.</p>
+          <a class="text-link text-link--light" href="#plan">Plan Your Calicoan Trip {{ arrow() }}</a>
+        </div>
+      </article>
+
+      <div class="island__pair section">
+        <article class="island__item island__item--coast">
+          {{ picture("aerial-coast", "(min-width: 900px) 34vw, 92vw", media_text["aerial-coast"].alt) }}
+          <h3>Take the day your way</h3>
+          <p>Not everyone needs the same itinerary. Plan some time by the coast, explore nearby places, or leave a little of the day open.</p>
+        </article>
+        <article class="island__item island__item--people">
+          {{ picture("guests-kubo", "(min-width: 900px) 48vw, 92vw", media_text["guests-kubo"].alt) }}
+          <h3>Stay for the shared moments</h3>
+          <p>A trip with friends. A few days with family. A chance to slow down together. Start with the stay, then make the rest of the trip your own.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="gallery section" id="gallery" aria-labelledby="gallery-title">
+      <header class="section-head">
+        <p class="eyebrow">Take a closer look</p>
+        <h2 class="section-title" id="gallery-title">Picture your <em>Calicoan stay.</em></h2>
+        <p class="section-lede">Explore the accommodation and surroundings before you plan your visit.</p>
+      </header>
+
+      <div class="gallery__filters" role="group" aria-label="Filter photos">
+        <button type="button" class="filter" aria-pressed="true" data-filter="all">All</button>
+        <button type="button" class="filter" aria-pressed="false" data-filter="stays">The Stays</button>
+        <button type="button" class="filter" aria-pressed="false" data-filter="retreat">Around the Retreat</button>
+        <button type="button" class="filter" aria-pressed="false" data-filter="calicoan">Calicoan</button>
+      </div>
+      <p class="visually-hidden" aria-live="polite" data-filter-status></p>
+
+      <ul class="gallery__grid">
+        {%- for id in gallery %}
+        <li class="gallery__item" data-group="{{ media_text[id].group }}">
+          <figure>
+            <button type="button" class="gallery__open" data-lightbox-index="{{ loop.index0 }}" aria-label="Open photo: {{ media_text[id].caption }}">
+              {{ picture(id, "(min-width: 1100px) 15vw, (min-width: 700px) 24vw, 32vw", media_text[id].alt) }}
+            </button>
+            <figcaption>{{ media_text[id].caption }}</figcaption>
+          </figure>
+        </li>
+        {%- endfor %}
+      </ul>
+
+      <div class="films">
+        {%- for v in videos %}
+        <figure class="film" data-film>
+          <div class="film__frame">
+            <video class="film__video" muted playsinline loop preload="none" poster="media/{{ v.poster }}-720.jpg" width="360" height="640" aria-label="{{ v.label }}">
+              <source src="media/{{ v.id }}.mp4" type="video/mp4">
+            </video>
+            <button type="button" class="film__toggle" aria-pressed="false" data-film-toggle>
+              <span class="film__icon" aria-hidden="true"></span><span data-film-label>Play video</span><span class="visually-hidden">: {{ v.title }}</span>
+            </button>
+          </div>
+          <figcaption><strong>{{ v.title }}</strong> {{ v.caption }}</figcaption>
+        </figure>
+        {%- endfor %}
+        <div class="films__note">
+          <p>Photos and clips come from the retreat’s own pages and may not show every current detail. Ask about your stay before you book.</p>
+          <a class="button" href="#inquiry">Ask About What You See</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="about__inner">
+        <p class="eyebrow">Calicoan Surf Retreat</p>
+        <h2 class="statement__title" id="about-title">A base for your <em>time on the island.</em></h2>
+        <p class="statement__body">Calicoan Surf Retreat is a place to stay in Calicoan Island, Guiuan, Eastern Samar, near ABCD Beach. Whether your plans revolve around surfing or simply spending a few days by the coast, start with a stay that suits your trip.</p>
+        <a class="text-link" href="#stays">Explore the Stays {{ arrow() }}</a>
+      </div>
+    </section>
+
+    <section class="plan section" id="plan" aria-labelledby="plan-title">
+      <div class="plan__intro">
+        <div class="plan__copy">
+          <p class="eyebrow">Before you set off</p>
+          <h2 class="section-title" id="plan-title">A little planning. <em>More time for Calicoan.</em></h2>
+          <p>Find us in Calicoan Island, Guiuan, Eastern Samar. Check the route before you travel and get in touch if you need to confirm the property entrance.</p>
+          <p class="plan__address"><span class="eyebrow">Location</span>{{ business.locationLabel }}</p>
+          <div class="plan__actions">
+            {%- if contact.maps.status != "hidden" %}
+            <a class="button" href="{{ contact.maps.url }}" target="_blank" rel="noopener">View on Google Maps<span class="visually-hidden"> (opens in a new tab)</span></a>
+            {%- endif %}
+            <a class="text-link" href="#inquiry">Ask About Your Arrival {{ arrow() }}</a>
+          </div>
+        </div>
+        <figure class="plan__media">
+          {{ picture("road", "(min-width: 900px) 30vw, 70vw", media_text["road"].alt) }}
+          <figcaption>{{ media_text["road"].caption }}</figcaption>
+        </figure>
+      </div>
+      <ul class="plan__tips">
+        <li>
+          <h3>Coming from farther away?</h3>
+          <p>Plan your journey to Guiuan, then continue to Calicoan. Check current transport options and onward travel arrangements for your arrival day.</p>
+        </li>
+        <li>
+          <h3>Staying with a group?</h3>
+          <p>Share your guest count and preferred dates so you can check which accommodation is suitable.</p>
+        </li>
+        <li>
+          <h3>Planning to surf?</h3>
+          <p>Conditions can change. Check locally before heading out, especially if you’re new to surfing.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="faq section" id="faq" aria-labelledby="faq-title">
+      <div class="faq__head">
+        <p class="eyebrow">Good to know</p>
+        <h2 class="section-title" id="faq-title">Questions before <em>you go.</em></h2>
+      </div>
+      <div class="faq__list">
+        {%- for q, a in faq %}
+        <details class="faq__item">
+          <summary><span>{{ q }}</span><span class="faq__icon" aria-hidden="true"></span></summary>
+          <p>{{ a }}</p>
+        </details>
+        {%- endfor %}
+      </div>
+    </section>
+
+    <section class="inquiry" id="inquiry" aria-labelledby="inquiry-title">
+      <div class="inquiry__inner">
+        <div class="inquiry__intro">
+          <p class="eyebrow">Start with your dates</p>
+          <h2 class="section-title" id="inquiry-title">See you in <em>Calicoan?</em></h2>
+          <p>Share when you’d like to come and who’s joining you. Ask about the stay options, current rates and details for your trip.</p>
+          <p class="inquiry__notice">This is an inquiry, not a confirmed reservation. Availability and terms need confirmation.</p>
+          {%- if contact.phone.status != "hidden" %}
+          <p class="inquiry__phone">Prefer to call? <a href="tel:{{ contact.phone.e164 }}">{{ contact.phone.display }}</a></p>
+          {%- endif %}
+        </div>
+
+        <form class="composer" novalidate data-composer>
+          <div class="composer__row">
+            <div class="field">
+              <label for="arrival">Arrival date</label>
+              <input id="arrival" name="arrival" type="date" required autocomplete="off" aria-describedby="arrival-error">
+              <p class="field__error" id="arrival-error" data-error-for="arrival"></p>
+            </div>
+            <div class="field">
+              <label for="departure">Departure date</label>
+              <input id="departure" name="departure" type="date" required autocomplete="off" aria-describedby="departure-error">
+              <p class="field__error" id="departure-error" data-error-for="departure"></p>
+            </div>
+          </div>
+          <div class="composer__row">
+            <div class="field">
+              <label for="guests">Number of guests</label>
+              <input id="guests" name="guests" type="number" inputmode="numeric" min="1" max="30" step="1" required autocomplete="off" aria-describedby="guests-error">
+              <p class="field__error" id="guests-error" data-error-for="guests"></p>
+            </div>
+            <div class="field">
+              <label for="stay">Preferred stay <span class="field__optional">(optional)</span></label>
+              <div class="select">
+                <select id="stay" name="stay">
+                  <option value="">No preference</option>
+                  {%- for stay in stays %}
+                  <option value="{{ stay.id }}">{{ stay.name }}</option>
+                  {%- endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="note">Anything you’d like to ask? <span class="field__optional">(optional)</span></label>
+            <textarea id="note" name="note" rows="3" maxlength="600" autocomplete="off"></textarea>
+          </div>
+
+          <div class="composer__preview">
+            <label for="message">Your message</label>
+            <textarea id="message" rows="9" readonly data-message aria-describedby="message-help"></textarea>
+            <p class="composer__help" id="message-help">Copy your trip details, then paste them into your message to the property.</p>
+          </div>
+
+          <div class="composer__actions">
+            <button class="button" type="submit">Copy Inquiry</button>
+            {%- if contact.facebook.status != "hidden" %}
+            <a class="button button--outline" href="{{ contact.facebook.url }}" target="_blank" rel="noopener">Open Facebook<span class="visually-hidden"> (opens in a new tab)</span></a>
+            {%- endif %}
+          </div>
+          <p class="composer__status" role="status" aria-live="polite" data-status></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="site-footer__top">
+      <nav aria-label="Footer">
+        <ul class="site-footer__nav">
+          <li><a href="#stays">Stays</a></li>
+          <li><a href="#calicoan">Calicoan</a></li>
+          <li><a href="#plan">Plan Your Visit</a></li>
+          <li><a href="#inquiry">Contact</a></li>
+        </ul>
+      </nav>
+      <address class="site-footer__contact">
+        <span>{{ business.name }}</span>
+        <span>{{ business.shortLocation }}</span>
+        {%- if contact.phone.status != "hidden" %}
+        <span>Phone: <a href="tel:{{ contact.phone.e164 }}">{{ contact.phone.display }}</a></span>
+        {%- endif %}
+      </address>
+      {%- if contact.facebook.status != "hidden" %}
+      <a class="social" href="{{ contact.facebook.url }}" target="_blank" rel="noopener" aria-label="Facebook (opens in a new tab)">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21h2.9Z" fill="currentColor"/></svg>
+        <span>Facebook</span>
+      </a>
+      {%- endif %}
+    </div>
+    <div class="site-footer__brand">
+      <picture>
+        <source type="image/webp" srcset="media/logo-full-360.webp 360w, media/logo-full-720.webp 720w" sizes="(min-width: 700px) 420px, 64vw">
+        <img src="media/logo-full-720.png" srcset="media/logo-full-360.png 360w, media/logo-full-720.png 720w" sizes="(min-width: 700px) 420px, 64vw" width="{{ media['logo-full'].width }}" height="{{ media['logo-full'].height }}" alt="{{ business.name }}" loading="lazy" decoding="async">
+      </picture>
+    </div>
+    <div class="site-footer__bottom">
+      <p>© <span data-year>{{ year }}</span> {{ business.name }}.</p>
+      <p>Designed by <a href="{{ credit.url }}" target="_blank" rel="noopener">{{ credit.studio }}</a></p>
+    </div>
+  </footer>
+
+  <a class="mobile-cta button" href="#inquiry" data-mobile-cta>Ask About Your Dates</a>
+
+  <dialog class="lightbox" aria-label="Photo viewer" data-lightbox>
+    <div class="lightbox__bar">
+      <p class="lightbox__count" data-lightbox-count></p>
+      <button type="button" class="lightbox__close" data-lightbox-close>Close<span class="visually-hidden"> photo viewer</span></button>
+    </div>
+    <figure class="lightbox__figure">
+      <picture data-lightbox-picture>
+        <source type="image/avif">
+        <img alt="">
+      </picture>
+      <figcaption data-lightbox-caption></figcaption>
+    </figure>
+    <button type="button" class="lightbox__nav lightbox__nav--prev" data-lightbox-prev aria-label="Previous photo"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button type="button" class="lightbox__nav lightbox__nav--next" data-lightbox-next aria-label="Next photo"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </dialog>
+
+  <script type="application/json" id="site-data">{{ client_data | tojson }}</script>
+  <script src="main.js?v={{ version }}" defer></script>
+</body>
+</html>

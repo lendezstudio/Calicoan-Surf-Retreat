@@ -1,0 +1,292 @@
+{
+ "hero": {
+  "widths": [
+   768,
+   1280,
+   1600,
+   2048
+  ],
+  "width": 2048,
+  "height": 1366
+ },
+ "hero-portrait": {
+  "widths": [
+   480,
+   768,
+   1024
+  ],
+  "width": 1024,
+  "height": 1065
+ },
+ "kubo-sala": {
+  "widths": [
+   480,
+   800,
+   1200
+  ],
+  "width": 1512,
+  "height": 1890
+ },
+ "kubo-exterior": {
+  "widths": [
+   544,
+   960
+  ],
+  "width": 544,
+  "height": 340
+ },
+ "loft-lounge": {
+  "widths": [
+   360,
+   720
+  ],
+  "width": 360,
+  "height": 450
+ },
+ "loft-bed": {
+  "widths": [
+   360,
+   720
+  ],
+  "width": 360,
+  "height": 450
+ },
+ "loft-kitchen": {
+  "widths": [
+   360,
+   720
+  ],
+  "width": 360,
+  "height": 450
+ },
+ "loft-billiards": {
+  "widths": [
+   360,
+   720
+  ],
+  "width": 360,
+  "height": 450
+ },
+ "loft-exterior": {
+  "widths": [
+   544,
+   960
+  ],
+  "width": 544,
+  "height": 340
+ },
+ "family-bed": {
+  "widths": [
+   360,
+   720
+  ],
+  "width": 360,
+  "height": 450
+ },
+ "family-bunks": {
+  "widths": [
+   360,
+   720
+  ],
+  "width": 360,
+  "height": 450
+ },
+ "family-exterior": {
+  "widths": [
+   544,
+   960
+  ],
+  "width": 544,
+  "height": 340
+ },
+ "garden-bath": {
+  "widths": [
+   480,
+   800,
+   1200
+  ],
+  "width": 1536,
+  "height": 1920
+ },
+ "guests-kubo": {
+  "widths": [
+   640,
+   1024,
+   1600
+  ],
+  "width": 2048,
+  "height": 1536
+ },
+ "aerial-coast": {
+  "widths": [
+   360,
+   720
+  ],
+  "width": 360,
+  "height": 450
+ },
+ "aerial-property": {
+  "widths": [
+   360,
+   720
+  ],
+  "width": 360,
+  "height": 450
+ },
+ "road": {
+  "widths": [
+   360,
+   720
+  ],
+  "width": 360,
+  "height": 450
+ },
+ "surf-21": {
+  "widths": [
+   640,
+   1024,
+   1600
+  ],
+  "width": 2048,
+  "height": 1365
+ },
+ "surf-13": {
+  "widths": [
+   480,
+   960,
+   1600
+  ],
+  "width": 2048,
+  "height": 1365
+ },
+ "surf-09": {
+  "widths": [
+   480,
+   960,
+   1600
+  ],
+  "width": 2048,
+  "height": 1365
+ },
+ "surf-16": {
+  "widths": [
+   480,
+   960,
+   1600
+  ],
+  "width": 1660,
+  "height": 1107
+ },
+ "surf-18": {
+  "widths": [
+   480,
+   960,
+   1600
+  ],
+  "width": 2020,
+  "height": 1347
+ },
+ "surf-19": {
+  "widths": [
+   480,
+   960,
+   1600
+  ],
+  "width": 2048,
+  "height": 1365
+ },
+ "surf-20": {
+  "widths": [
+   480,
+   960,
+   1600
+  ],
+  "width": 2048,
+  "height": 1365
+ },
+ "surf-15": {
+  "widths": [
+   480,
+   960,
+   1600
+  ],
+  "width": 2048,
+  "height": 1365
+ },
+ "strip-sala": {
+  "widths": [
+   320,
+   640
+  ],
+  "width": 1512,
+  "height": 1512
+ },
+ "strip-lounge": {
+  "widths": [
+   320,
+   640
+  ],
+  "width": 360,
+  "height": 360
+ },
+ "strip-bath": {
+  "widths": [
+   320,
+   640
+  ],
+  "width": 1536,
+  "height": 1536
+ },
+ "strip-family": {
+  "widths": [
+   320,
+   640
+  ],
+  "width": 360,
+  "height": 360
+ },
+ "strip-surf": {
+  "widths": [
+   320,
+   640
+  ],
+  "width": 1365,
+  "height": 1365
+ },
+ "strip-aerial": {
+  "widths": [
+   320,
+   640
+  ],
+  "width": 360,
+  "height": 360
+ },
+ "poster-tour": {
+  "widths": [
+   360,
+   720
+  ],
+  "width": 360,
+  "height": 640
+ },
+ "poster-surf": {
+  "widths": [
+   360,
+   720
+  ],
+  "width": 360,
+  "height": 640
+ },
+ "logo-full": {
+  "widths": [
+   360,
+   720
+  ],
+  "width": 1475,
+  "height": 1001
+ },
+ "logo-lockup": {
+  "width": 924,
+  "height": 220
+ }
+}
