@@ -222,12 +222,12 @@
 
       <div class="films">
         {%- for v in videos %}
-        <figure class="film" data-film>
+        <figure class="film" data-film data-src="media/{{ v.id }}.mp4" data-poster="media/{{ v.poster }}-720.jpg" data-title="{{ v.title }}" data-caption="{{ v.caption }}" data-label="{{ v.label }}">
           <div class="film__frame">
             <video class="film__video" muted playsinline loop preload="none" poster="media/{{ v.poster }}-720.jpg" width="360" height="640" aria-label="{{ v.label }}">
               <source src="media/{{ v.id }}.mp4" type="video/mp4">
             </video>
-            <button type="button" class="film__toggle" aria-pressed="false" data-film-toggle>
+            <button type="button" class="film__toggle" data-film-toggle aria-haspopup="dialog">
               <span class="film__icon" aria-hidden="true"></span><span data-film-label>Play video</span><span class="visually-hidden">: {{ v.title }}</span>
             </button>
           </div>
@@ -411,6 +411,22 @@
   </footer>
 
   <a class="mobile-cta button" href="#inquiry" data-mobile-cta>Ask About Your Dates</a>
+
+  <dialog class="lightbox player" aria-labelledby="player-title" data-player>
+    <div class="lightbox__bar">
+      <p class="lightbox__count" id="player-title" data-player-title></p>
+      <button type="button" class="lightbox__close" data-player-close>Close<span class="visually-hidden"> video</span></button>
+    </div>
+    <figure class="player__figure">
+      <div class="player__stage">
+        <video class="player__video" muted playsinline loop preload="none" data-player-video></video>
+        <button type="button" class="film__toggle player__toggle" aria-pressed="true" data-player-toggle>
+          <span class="film__icon" aria-hidden="true"></span><span data-player-label>Pause video</span>
+        </button>
+      </div>
+      <figcaption data-player-caption></figcaption>
+    </figure>
+  </dialog>
 
   <dialog class="lightbox" aria-label="Photo viewer" data-lightbox>
     <div class="lightbox__bar">
