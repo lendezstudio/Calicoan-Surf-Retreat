@@ -11,6 +11,25 @@
   /* Year */
   $$("[data-year]").forEach((el) => { el.textContent = String(new Date().getFullYear()); });
 
+  /* Hero focal point: on wide screens, crop so the surfer stays in frame above the text */
+  const heroImg = $(".hero__media img[data-focal-y]");
+  const heroBox = $(".hero__media");
+  const placeHero = () => {
+    if (!heroImg || window.innerWidth < 700) { if (heroImg) heroImg.style.objectPosition = ""; return; }
+    const w = heroBox.clientWidth;
+    const h = heroBox.clientHeight;
+    const ratio = heroImg.naturalWidth / heroImg.naturalHeight || 1.5;
+    const rendered = w / ratio;
+    const overflow = rendered - h;
+    if (overflow <= 0) { heroImg.style.objectPosition = ""; return; }
+    const offset = Number(heroImg.dataset.focalY) * rendered - 0.04 * h;
+    const y = Math.min(1, Math.max(0, offset / overflow));
+    heroImg.style.objectPosition = `62% ${(y * 100).toFixed(1)}%`;
+  };
+  placeHero();
+  heroImg && heroImg.addEventListener("load", placeHero);
+  window.addEventListener("resize", placeHero, { passive: true });
+
   /* Header state */
   const header = $("[data-header]");
   const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
