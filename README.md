@@ -75,7 +75,9 @@ The composer builds a message in the browser. Nothing is submitted, stored or pu
 
 ## Deploy (GitHub Pages)
 
-Pages serves the `gh-pages` branch, which holds only the contents of `dist/`. After rebuilding and committing on `main`:
+Pages publishes the `main` branch root. The root `index.html` forwards visitors to `dist/`, and `.nojekyll` stops GitHub from rendering this README as the home page. Rebuild, commit and push `main` to update the live site.
+
+To serve the site without `/dist/` in the address instead, set Pages to the `gh-pages` branch and publish it with:
 
 ```sh
 git subtree split --prefix dist -b gh-pages-tmp
