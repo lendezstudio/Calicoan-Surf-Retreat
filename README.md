@@ -75,12 +75,13 @@ The composer builds a message in the browser. Nothing is submitted, stored or pu
 
 ## Deploy (GitHub Pages)
 
-Pages publishes the `main` branch root. The root `index.html` forwards visitors to `dist/`, and `.nojekyll` stops GitHub from rendering this README as the home page. Rebuild, commit and push `main` to update the live site.
-
-To serve the site without `/dist/` in the address instead, set Pages to the `gh-pages` branch and publish it with:
+Pages serves the `gh-pages` branch, which holds only the contents of `dist/`. The live site is https://lendezstudio.github.io/Calicoan-Surf-Retreat/. After rebuilding and committing on `main`:
 
 ```sh
+git push
 git subtree split --prefix dist -b gh-pages-tmp
 git push -f origin gh-pages-tmp:gh-pages
 git branch -D gh-pages-tmp
 ```
+
+The root `index.html` and `.nojekyll` on `main` are a fallback that forwards to `dist/` if Pages is ever switched back to the `main` branch.
