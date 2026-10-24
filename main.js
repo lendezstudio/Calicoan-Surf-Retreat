@@ -195,35 +195,59 @@
     });
   });
 
-  /* Videos: play only when asked, pause when scrolled away */
-  const films = $$("[data-film]").map((fig) => {
+  /* Videos: open enlarged in a player when asked; never autoplay */
+  const player = $("[data-player]");
+  const playerVideo = $("[data-player-video]", player);
+  const playerToggle = $("[data-player-toggle]", player);
+  const playerLabel = $("[data-player-label]", player);
+  let playerReturn = null;
+
+  const setPlaying = (playing) => {
+    playerToggle.setAttribute("aria-pressed", String(playing));
+    playerLabel.textContent = playing ? "Pause video" : "Play video";
+  };
+  function startPlayer() {
+    playerVideo.play().catch(() => { playerLabel.textContent = "Video unavailable"; });
+  }
+  function openPlayer(fig, trigger) {
+    if (typeof player.showModal !== "function") return false;
+    playerReturn = trigger;
+    if (playerVideo.dataset.src !== fig.dataset.src) {
+      playerVideo.dataset.src = fig.dataset.src;
+      playerVideo.poster = fig.dataset.poster;
+      playerVideo.src = fig.dataset.src;
+      playerVideo.setAttribute("aria-label", fig.dataset.label);
+    }
+    $("[data-player-title]", player).textContent = fig.dataset.title;
+    $("[data-player-caption]", player).textContent = fig.dataset.caption;
+    player.showModal();
+    document.documentElement.style.overflow = "hidden";
+    playerToggle.focus();
+    startPlayer();
+    return true;
+  }
+  playerToggle.addEventListener("click", () => { if (playerVideo.paused) startPlayer(); else playerVideo.pause(); });
+  playerVideo.addEventListener("play", () => setPlaying(true));
+  playerVideo.addEventListener("pause", () => setPlaying(false));
+  playerVideo.addEventListener("click", () => playerToggle.click());
+  $("[data-player-close]", player).addEventListener("click", () => player.close());
+  player.addEventListener("click", (e) => { if (e.target === player) player.close(); });
+  player.addEventListener("close", () => {
+    playerVideo.pause();
+    document.documentElement.style.overflow = "";
+    if (playerReturn) playerReturn.focus();
+  });
+
+  $$("[data-film]").forEach((fig) => {
     const video = $("video", fig);
     const toggle = $("[data-film-toggle]", fig);
-    const label = $("[data-film-label]", fig);
-    const set = (playing) => {
-      toggle.setAttribute("aria-pressed", String(playing));
-      label.textContent = playing ? "Pause video" : "Play video";
-    };
+    video.addEventListener("click", () => toggle.click());
     toggle.addEventListener("click", () => {
-      if (video.paused) {
-        films.forEach((f) => { if (f.video !== video) f.video.pause(); });
-        video.preload = "auto";
-        video.play().catch(() => { label.textContent = "Video unavailable"; });
-      } else {
-        video.pause();
-      }
+      if (openPlayer(fig, toggle)) return;
+      // Fallback for browsers without <dialog>: play in place.
+      if (video.paused) video.play().catch(() => {}); else video.pause();
     });
-    video.addEventListener("play", () => set(true));
-    video.addEventListener("pause", () => set(false));
-    video.addEventListener("error", () => { label.textContent = "Video unavailable"; toggle.disabled = true; }, true);
-    return { video };
   });
-  if ("IntersectionObserver" in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((en) => { if (!en.isIntersecting) en.target.pause(); });
-    }, { threshold: 0.1 });
-    films.forEach((f) => io.observe(f.video));
-  }
 
   /* Inquiry composer: builds a message locally. Nothing is sent or stored. */
   const form = $("[data-composer]");
