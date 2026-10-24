@@ -72,3 +72,13 @@ The checks cover:
 ## Inquiry composer
 
 The composer builds a message in the browser. Nothing is submitted, stored or put in the URL. "Copy Inquiry" copies it to the clipboard, and "Open Facebook" opens the page in a new tab for the guest to paste and send. There is no booking engine or form endpoint.
+
+## Deploy (GitHub Pages)
+
+Pages serves the `gh-pages` branch, which holds only the contents of `dist/`. After rebuilding and committing on `main`:
+
+```sh
+git subtree split --prefix dist -b gh-pages-tmp
+git push -f origin gh-pages-tmp:gh-pages
+git branch -D gh-pages-tmp
+```
