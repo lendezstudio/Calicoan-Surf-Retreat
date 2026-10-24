@@ -415,11 +415,14 @@
   <dialog class="lightbox player" aria-labelledby="player-title" data-player>
     <div class="lightbox__bar">
       <p class="lightbox__count" id="player-title" data-player-title></p>
-      <button type="button" class="lightbox__close" data-player-close>Close<span class="visually-hidden"> video</span></button>
+      <div class="player__tools">
+        <button type="button" class="lightbox__close" aria-pressed="false" data-player-mute>Mute</button>
+        <button type="button" class="lightbox__close" data-player-close>Close<span class="visually-hidden"> video</span></button>
+      </div>
     </div>
     <figure class="player__figure">
       <div class="player__stage">
-        <video class="player__video" muted playsinline loop preload="none" data-player-video></video>
+        <video class="player__video" playsinline loop preload="none" data-player-video></video>
         <button type="button" class="film__toggle player__toggle" aria-pressed="true" data-player-toggle>
           <span class="film__icon" aria-hidden="true"></span><span data-player-label>Pause video</span>
         </button>

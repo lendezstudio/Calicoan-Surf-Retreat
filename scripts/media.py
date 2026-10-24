@@ -211,8 +211,10 @@ def build_videos():
     for name, (key, start, dur) in VIDEOS.items():
         subprocess.run([
             "ffmpeg", "-v", "error", "-y", "-ss", str(start), "-t", str(dur), "-i", str(source(key)),
-            "-an", "-vf", "scale=360:640:flags=lanczos,fps=30", "-c:v", "libx264", "-preset", "slow",
-            "-crf", "27", "-profile:v", "main", "-pix_fmt", "yuv420p", "-movflags", "+faststart",
+            "-vf", "scale=360:640:flags=lanczos,fps=30", "-c:v", "libx264", "-preset", "slow",
+            "-crf", "27", "-profile:v", "main", "-pix_fmt", "yuv420p",
+            "-af", f"afade=t=in:d=0.4,afade=t=out:st={dur - 1.2}:d=1.2", "-c:a", "aac", "-b:a", "96k",
+            "-movflags", "+faststart",
             str(OUT / f"{name}.mp4")], check=True)
         print(f"video {name}: {(OUT / f'{name}.mp4').stat().st_size // 1024} KB")
 
