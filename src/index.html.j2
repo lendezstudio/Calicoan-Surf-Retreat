@@ -99,7 +99,7 @@
           <source media="(max-width: 699.98px)" type="image/avif" srcset="{% for w in media['hero-portrait'].widths %}media/hero-portrait-{{ w }}.avif {{ w }}w{{ ", " if not loop.last }}{% endfor %}" sizes="100vw">
           <source media="(max-width: 699.98px)" srcset="{% for w in media['hero-portrait'].widths %}media/hero-portrait-{{ w }}.jpg {{ w }}w{{ ", " if not loop.last }}{% endfor %}" sizes="100vw">
           <source type="image/avif" srcset="{% for w in media['hero'].widths %}media/hero-{{ w }}.avif {{ w }}w{{ ", " if not loop.last }}{% endfor %}" sizes="100vw">
-          <img src="media/hero-1600.jpg" srcset="{% for w in media['hero'].widths %}media/hero-{{ w }}.jpg {{ w }}w{{ ", " if not loop.last }}{% endfor %}" sizes="100vw" width="{{ media['hero'].width }}" height="{{ media['hero'].height }}" alt="A surfer on a longboard riding a blue reef wave" fetchpriority="high" loading="eager" decoding="async">
+          <img src="media/hero-1600.jpg" srcset="{% for w in media['hero'].widths %}media/hero-{{ w }}.jpg {{ w }}w{{ ", " if not loop.last }}{% endfor %}" sizes="100vw" width="{{ media['hero'].width }}" height="{{ media['hero'].height }}" alt="A surfer on a longboard riding a blue reef wave" data-focal-y="0.36" fetchpriority="high" loading="eager" decoding="async">
         </picture>
       </div>
       <div class="hero__content">
@@ -181,7 +181,7 @@
 
       <div class="island__pair section">
         <article class="island__item island__item--coast">
-          {{ picture("aerial-coast", "(min-width: 900px) 34vw, 92vw", media_text["aerial-coast"].alt) }}
+          {{ picture("wade", "(min-width: 900px) 34vw, 92vw", media_text["wade"].alt) }}
           <h3>Take the day your way</h3>
           <p>Not everyone needs the same itinerary. Plan some time by the coast, explore nearby places, or leave a little of the day open.</p>
         </article>
@@ -266,8 +266,7 @@
           </div>
         </div>
         <figure class="plan__media">
-          {{ picture("road", "(min-width: 900px) 30vw, 70vw", media_text["road"].alt) }}
-          <figcaption>{{ media_text["road"].caption }}</figcaption>
+          {{ picture("shore", "(min-width: 900px) 30vw, 92vw", media_text["shore"].alt) }}
         </figure>
       </div>
       <ul class="plan__tips">
@@ -300,6 +299,15 @@
         {%- endfor %}
       </div>
     </section>
+
+    <figure class="interlude">
+      <picture>
+        <source media="(max-width: 699.98px)" type="image/avif" srcset="{% for w in media['spray-tall'].widths %}media/spray-tall-{{ w }}.avif {{ w }}w{{ ", " if not loop.last }}{% endfor %}" sizes="100vw">
+        <source media="(max-width: 699.98px)" srcset="{% for w in media['spray-tall'].widths %}media/spray-tall-{{ w }}.jpg {{ w }}w{{ ", " if not loop.last }}{% endfor %}" sizes="100vw">
+        <source type="image/avif" srcset="{% for w in media['spray-wide'].widths %}media/spray-wide-{{ w }}.avif {{ w }}w{{ ", " if not loop.last }}{% endfor %}" sizes="100vw">
+        <img src="media/spray-wide-1600.jpg" srcset="{% for w in media['spray-wide'].widths %}media/spray-wide-{{ w }}.jpg {{ w }}w{{ ", " if not loop.last }}{% endfor %}" sizes="100vw" width="{{ media['spray-wide'].width }}" height="{{ media['spray-wide'].height }}" alt="{{ media_text['spray-wide'].alt }}" loading="lazy" decoding="async">
+      </picture>
+    </figure>
 
     <section class="inquiry" id="inquiry" aria-labelledby="inquiry-title">
       <div class="inquiry__inner">

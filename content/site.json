@@ -71,6 +71,9 @@
     "aerial-property": { "alt": "Aerial view of the thatched Loft House and the container room among palm trees", "caption": "The retreat from above", "group": "retreat" },
     "guests-kubo":     { "alt": "Three guests smiling outside a bamboo kubo next to a surfboard", "caption": "Guests at the retreat", "group": "retreat" },
     "aerial-coast":    { "alt": "Aerial view of the retreat among coconut palms with the reef coastline beyond", "caption": "Between the palms and the coast", "group": "calicoan" },
+    "wade":            { "alt": "Surfer standing in the shallows holding a white surfboard", "caption": "", "group": "mood" },
+    "shore":           { "alt": "Surfer in a wetsuit watching the waves with a board under one arm", "caption": "", "group": "mood" },
+    "spray-wide":      { "alt": "Surfer carving through bright spray on a wave", "caption": "", "group": "mood" },
     "road":            { "alt": "Aerial view of the coastal highway lined with greenery", "caption": "The highway near the retreat", "group": "calicoan" },
     "surf-21":         { "alt": "Surfer riding along the face of a blue wave", "caption": "Surf photo shared by the retreat", "group": "calicoan" },
     "surf-13":         { "alt": "Surfer with arms raised turning on a breaking wave", "caption": "Surf photo shared by the retreat", "group": "calicoan" },
@@ -84,11 +87,11 @@
 
   "strip": [
     { "id": "strip-sala", "alt": "Bamboo kubo sala" },
-    { "id": "strip-lounge", "alt": "Loft House living area" },
+    { "id": "strip-boards", "alt": "Colorful surfboards leaning against a tree" },
     { "id": "strip-surf", "alt": "Surfer on a blue wave" },
-    { "id": "strip-family", "alt": "Container Family Room from outside" },
+    { "id": "strip-yellow", "alt": "Surfer carrying a yellow longboard along the beach" },
     { "id": "strip-bath", "alt": "Open-air garden bathroom" },
-    { "id": "strip-aerial", "alt": "The retreat among palms from above" }
+    { "id": "strip-fins", "alt": "Row of surfboard fins in black and white" }
   ],
 
   "videos": [

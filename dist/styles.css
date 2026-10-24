@@ -330,14 +330,14 @@ em { font-style: italic; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 62% 92%;
+  object-position: 62% 70%;
 }
 .hero__media::after {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(10, 20, 32, 0.12) 0%, rgba(10, 20, 32, 0.08) 30%, rgba(10, 20, 32, 0.5) 62%, rgba(10, 20, 32, 0.78) 100%);
+    linear-gradient(180deg, rgba(8, 18, 30, 0.1) 0%, rgba(8, 18, 30, 0.12) 32%, rgba(8, 18, 30, 0.58) 52%, rgba(8, 18, 30, 0.8) 72%, rgba(8, 18, 30, 0.88) 100%);
 }
 .hero__content {
   align-self: end;
@@ -352,14 +352,15 @@ em { font-style: italic; }
   line-height: 1.2;
   letter-spacing: -0.01em;
   text-wrap: balance;
-  text-shadow: 0 1px 24px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
 }
 .hero__lede {
   max-width: 36rem;
   margin: 22px auto 0;
   font-size: 1rem;
   line-height: 1.8;
-  color: rgba(255, 255, 255, 0.92);
+  color: #fff;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
 }
 .hero__actions {
   display: flex;
@@ -375,8 +376,9 @@ em { font-style: italic; }
   letter-spacing: 0.18em;
   text-transform: uppercase;
   text-align: center;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.82);
 }
+.hero .eyebrow--light { color: #fff; text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5); }
 
 /* Statement */
 
@@ -715,6 +717,20 @@ em { font-style: italic; }
 .faq__icon::after { transform: rotate(90deg); }
 .faq__item[open] .faq__icon::after { transform: rotate(0deg); }
 .faq__item p { max-width: 38rem; padding: 0 0 22px; color: var(--ink-soft); }
+
+@media (min-width: 700px) and (max-height: 820px) {
+  .hero__content { padding-bottom: 58px; }
+  .hero__content .eyebrow { margin-bottom: 12px; }
+  .hero__title { font-size: clamp(2rem, 1.2rem + 2.4vw, 3rem); }
+  .hero__lede { margin-top: 14px; }
+  .hero__actions { margin-top: 22px; }
+  .hero__foot { bottom: 16px; }
+}
+
+/* Full-bleed photo interlude */
+
+.interlude { margin: 0; background: var(--sand); overflow: hidden; }
+.interlude img { width: 100%; height: clamp(320px, 42vw, 640px); object-fit: cover; object-position: 30% 50%; }
 
 /* Inquiry */
 

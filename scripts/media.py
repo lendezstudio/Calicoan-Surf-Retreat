@@ -36,6 +36,12 @@ FILES = {
     "V1": "AQObBu7JGVv",            # vertical drone surf footage
     "V2": "AQOqUctl0Sr",            # vertical property reel
     "V3": "AQOuslfeQ9j",            # vertical property reel
+    "P_BOARDS": "pexels-jess-vide-4318971",
+    "P_WADE": "pexels-jess-vide-4322488",
+    "P_YELLOW": "pexels-jess-vide-9269513",
+    "P_SPRAY": "pexels-ollivves-1005456",
+    "P_SHORE": "pexels-ryan-hiebendahl",
+    "P_FINS": "pexels-zulfikar-najwan",
 }
 
 # Vertical reels carry a location sticker near the top; this crop keeps a clean 4:5 frame below it.
@@ -72,11 +78,16 @@ IMAGES = {
     "surf-15":         ("I15", None, None, [480, 960, 1600]),
     # Square crops for the full-bleed photo strip.
     "strip-sala":      ("I04", None, (0, 189, 1512, 1701), [320, 640]),
-    "strip-lounge":    ("V2", 12.5, (0, 200, 360, 560), [320, 640]),
+    "strip-boards":    ("P_BOARDS", None, (0, 450, 3600, 4050), [320, 640]),
+    "strip-yellow":    ("P_YELLOW", None, (0, 900, 4800, 5700), [320, 640]),
+    "strip-fins":      ("P_FINS", None, (0, 270, 2160, 2430), [320, 640]),
     "strip-bath":      ("I02", None, (0, 420, 1536, 1956), [320, 640]),
-    "strip-family":    ("V0", 10.5, (110, 0, 470, 360), [320, 640]),
     "strip-surf":      ("I21", None, (506, 0, 1871, 1365), [320, 640]),
-    "strip-aerial":    ("V2", 25.0, (0, 250, 360, 610), [320, 640]),
+    # Pexels photography for mood sections.
+    "wade":            ("P_WADE", None, None, [480, 800, 1200]),
+    "shore":           ("P_SHORE", None, None, [480, 800, 1200]),
+    "spray-wide":      ("P_SPRAY", None, (0, 1300, 4000, 3014), [960, 1600, 2400]),
+    "spray-tall":      ("P_SPRAY", None, (0, 400, 4000, 4400), [480, 800, 1200]),
     # Video posters.
     "poster-tour":     ("V3", 0.5, None, [360, 720]),
     "poster-surf":     ("V1", 31.0, None, [360, 720]),

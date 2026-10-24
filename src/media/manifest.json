@@ -221,13 +221,29 @@
   "width": 1512,
   "height": 1512
  },
- "strip-lounge": {
+ "strip-boards": {
   "widths": [
    320,
    640
   ],
-  "width": 360,
-  "height": 360
+  "width": 3600,
+  "height": 3600
+ },
+ "strip-yellow": {
+  "widths": [
+   320,
+   640
+  ],
+  "width": 4800,
+  "height": 4800
+ },
+ "strip-fins": {
+  "widths": [
+   320,
+   640
+  ],
+  "width": 2160,
+  "height": 2160
  },
  "strip-bath": {
   "widths": [
@@ -237,14 +253,6 @@
   "width": 1536,
   "height": 1536
  },
- "strip-family": {
-  "widths": [
-   320,
-   640
-  ],
-  "width": 360,
-  "height": 360
- },
  "strip-surf": {
   "widths": [
    320,
@@ -253,13 +261,41 @@
   "width": 1365,
   "height": 1365
  },
- "strip-aerial": {
+ "wade": {
   "widths": [
-   320,
-   640
+   480,
+   800,
+   1200
   ],
-  "width": 360,
-  "height": 360
+  "width": 3600,
+  "height": 4500
+ },
+ "shore": {
+  "widths": [
+   480,
+   800,
+   1200
+  ],
+  "width": 4000,
+  "height": 5000
+ },
+ "spray-wide": {
+  "widths": [
+   960,
+   1600,
+   2400
+  ],
+  "width": 4000,
+  "height": 1714
+ },
+ "spray-tall": {
+  "widths": [
+   480,
+   800,
+   1200
+  ],
+  "width": 4000,
+  "height": 4000
  },
  "poster-tour": {
   "widths": [
