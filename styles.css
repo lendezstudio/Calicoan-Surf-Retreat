@@ -969,6 +969,8 @@ em { font-style: italic; }
 
 /* Video player */
 
+.player__tools { display: flex; gap: 20px; }
+
 .player__figure {
   display: flex;
   flex: 1 1 auto;

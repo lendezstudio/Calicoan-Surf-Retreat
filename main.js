@@ -206,8 +206,19 @@
     playerToggle.setAttribute("aria-pressed", String(playing));
     playerLabel.textContent = playing ? "Pause video" : "Play video";
   };
+  const playerMute = $("[data-player-mute]", player);
+  const setMuted = (muted) => {
+    playerVideo.muted = muted;
+    playerMute.setAttribute("aria-pressed", String(muted));
+    playerMute.textContent = muted ? "Unmute" : "Mute";
+  };
+  playerMute.addEventListener("click", () => setMuted(!playerVideo.muted));
   function startPlayer() {
-    playerVideo.play().catch(() => { playerLabel.textContent = "Video unavailable"; });
+    playerVideo.play().catch(() => {
+      // Some browsers refuse sound without a fresh tap; fall back to muted playback.
+      setMuted(true);
+      playerVideo.play().catch(() => { playerLabel.textContent = "Video unavailable"; });
+    });
   }
   function openPlayer(fig, trigger) {
     if (typeof player.showModal !== "function") return false;
@@ -220,6 +231,7 @@
     }
     $("[data-player-title]", player).textContent = fig.dataset.title;
     $("[data-player-caption]", player).textContent = fig.dataset.caption;
+    setMuted(false);
     player.showModal();
     document.documentElement.style.overflow = "hidden";
     playerToggle.focus();
